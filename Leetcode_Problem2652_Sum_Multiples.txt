@@ -1,0 +1,28 @@
+int sumOfMultiples(int n){
+    int sum = 0;
+    for(int i = 1; i <= n; i++)
+    {
+        if((i%3 == 0) || (i%5 == 0) || (i%7 == 0))
+            sum += i;
+    }
+    return sum;
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+#define csum(A) (A * (A + 1) / 2)
+
+int sumOfMultiples(int n) {
+
+    // Try to use set theory and arithmetic progressions to devise a formula that does not need us to use a loop.
+
+    // Integer division in C is equivalent to floor division, so you can get the number of divisors using the same. Then, set theory can be used to obtain a single formula for the required sum:
+
+    // n(A∪B∪C)=n(A)+n(B)+n(C)−n(A∩B)−n(B∩C)−n(C∩A)+n(A∩B∩C)
+
+
+    return (3 * csum(n/3) + 5 * csum(n/5) + 7 * csum(n/7) - 15 * csum(n/15) - 21 * csum(n/21) - 35 * csum(n/35) + 105 * csum(n/105));
+}
+
